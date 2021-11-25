@@ -1,0 +1,74 @@
+name: Build
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "manifest.json"
+      - "templates/**"
+      - ".github/workflows/**"
+  push:
+    branches:
+      - main
+    paths:
+      - "manifest.json"
+      - "templates/**"
+      - ".github/workflows/**"
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v2
+      - id: set-matrix
+        run: |
+          JSON=$(cat ./manifest.json | jq [.[][]])
+          JSON="${JSON//'%'/'%25'}"
+          JSON="{\"include\":$JSON}"
+          JSON="${JSON//$'\n'/'%0A'}"
+          JSON="${JSON//$'\r'/'%0D'}"
+          echo $JSON
+          echo "-----------------------"
+          echo "::set-output name=matrix::$JSON"
+  build:
+    needs: prepare
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{fromJson(needs.prepare.outputs.matrix)}}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup graalvm
+        uses: DeLaGuardo/setup-graalvm@5.0
+        with:
+          graalvm: "21.3.0"
+          java: ${{ matrix.javaVersion }}
+          arch: "amd64"
+      - name: Build with Maven
+        if: ${{ matrix.dependencyManager == 'maven' }}
+        run: |
+          cd ${{ matrix.directory }}/"{{ cookiecutter.project_slug }}"/HelloWorldFunction/
+          mvn clean install -P native
+      - name: Build with Gradle
+        if: ${{ matrix.dependencyManager == 'gradle' }}
+        run: |
+          cd ./${{ matrix.directory }}/"{{ cookiecutter.project_slug }}"/HelloWorldFunction/
+          ./gradlew build
+
+  savepr:
+    runs-on: ubuntu-latest
+    name: Save PR number if running on PR by dependabot
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - name: Create Directory and save issue
+        run: |
+          mkdir -p ./pr
+          echo ${{ github.event.number }}
+          echo ${{ github.event.number }} > ./pr/NR
+      - uses: actions/upload-artifact@v2
+        name: Updload artifact
+        with:
+          name: pr
+          path: pr/

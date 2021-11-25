@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: "maven"
+    directory: "/templates/java11/cookiecutter-aws-sam-graalvm-maven/{{ cookiecutter.project_slug }}/HelloWorldFunction"
+    schedule:
+      interval: "daily"
+    labels:
+      - "maven"
+      - "dependencies"
+  - package-ecosystem: "gradle"
+    directory: "/templates/java11/cookiecutter-aws-sam-graalvm-gradle/{{ cookiecutter.project_slug }}/HelloWorldFunction"
+    schedule:
+      interval: "daily"
+    labels:
+      - "gradle"
+      - "dependencies"
