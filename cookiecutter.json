@@ -3,5 +3,5 @@
   "project_slug": "{{ cookiecutter.project_name.replace('_', ' ').title().replace(' ', '') }}",
   "runtime": ["java11"],
   "dependency_manager": ["Maven", "Gradle"],
-  "_templates_repo": "https://gitlab.aws.dev/ridaviso/cookiecutter-aws-sam-graalvm.git"
+  "_templates_repo": "git@ssh.gitlab.aws.dev:ridaviso/cookiecutter-aws-sam-graalvm.git"
 }
