@@ -44,7 +44,7 @@ jobs:
         uses: DeLaGuardo/setup-graalvm@5.0
         with:
           graalvm: "21.3.0"
-          java: ${{ matrix.javaVersion }}
+          java: java${{ matrix.javaVersion }}
           arch: "amd64"
       - name: Build with Maven
         if: ${{ matrix.dependencyManager == 'maven' }}
