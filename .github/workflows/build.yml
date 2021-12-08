@@ -55,7 +55,7 @@ jobs:
         if: ${{ matrix.dependencyManager == 'gradle' }}
         run: |
           cd ./${{ matrix.directory }}/"{{ cookiecutter.project_slug }}"/HelloWorldFunction/
-          ./gradlew build
+          ./gradlew nativeCompile
 
   savepr:
     runs-on: ubuntu-latest
