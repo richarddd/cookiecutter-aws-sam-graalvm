@@ -7,26 +7,26 @@ RUN yum -y update \
     && rm -rf /var/cache/yum
 
 # Graal VM
+ENV JAVA_VERSION java11
 ENV GRAAL_VERSION 21.3.0
-ENV GRAAL_FOLDERNAME graalvm-ce-java11-${GRAAL_VERSION}
-ENV GRAAL_FILENAME graalvm-ce-java11-linux-amd64-${GRAAL_VERSION}.tar.gz
+ENV GRAAL_FOLDERNAME graalvm-ce-${JAVA_VERSION}-${GRAAL_VERSION}
+ENV GRAAL_FILENAME graalvm-ce-${JAVA_VERSION}-linux-amd64-${GRAAL_VERSION}.tar.gz
 RUN curl -4 -L https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-${GRAAL_VERSION}/${GRAAL_FILENAME} | tar -xvz
 RUN mv $GRAAL_FOLDERNAME /usr/lib/graalvm
 RUN rm -rf $GRAAL_FOLDERNAME
 
-# Maven 3.3.x
-ENV MVN_VERSION 3.6.3
+# Maven
+ENV MVN_VERSION 3.8.4
 ENV MVN_FOLDERNAME apache-maven-${MVN_VERSION}
 ENV MVN_FILENAME apache-maven-${MVN_VERSION}-bin.tar.gz
 RUN curl -4 -L https://mirrors.ukfast.co.uk/sites/ftp.apache.org/maven/maven-3/${MVN_VERSION}/binaries/${MVN_FILENAME} | tar -xvz
 RUN mv $MVN_FOLDERNAME /usr/lib/maven
 RUN rm -rf $MVN_FOLDERNAME
 
-# Gradle 7.2
-ENV GRADLE_VERSION 7.2
+# Gradle
+ENV GRADLE_VERSION 7.3.1
 ENV GRADLE_FOLDERNAME gradle-${GRADLE_VERSION}
 ENV GRALE_FILENAME ${GRADLE_FOLDERNAME}-bin.zip
-ENV apa 123565
 RUN curl -L https://services.gradle.org/distributions/${GRALE_FILENAME} > $GRALE_FILENAME
 RUN unzip -o $GRALE_FILENAME
 RUN mv $GRADLE_FOLDERNAME /usr/lib/gradle
@@ -41,7 +41,5 @@ RUN ln -s /usr/lib/graalvm/bin/native-image /usr/bin/native-image
 RUN ln -s /usr/lib/maven/bin/mvn /usr/bin/mvn
 
 ENV JAVA_HOME /usr/lib/graalvm
-
-
 
 ENTRYPOINT ["sh"]
