@@ -14,6 +14,7 @@ def main():
 
     project_name = "{{ cookiecutter.project_name }}"
     project_slug = "{{ cookiecutter.project_slug }}"
+    java_version = "{{ cookiecutter.java_version }}"
 
     templates_repo = "{{ cookiecutter._templates_repo }}"
     template_dir = os.path.join("templates", "{{ cookiecutter.java_version }}", "cookiecutter-aws-sam-graalvm-{{ cookiecutter.dependency_manager.lower() }}")
@@ -25,7 +26,8 @@ def main():
                     overwrite_if_exists=True,
                     extra_context={
                                     "project_name": project_name,
-                                    "project_slug": project_slug
+                                    "project_slug": project_slug,
+                                    "java_version": java_version
                                   }
                 )
 
