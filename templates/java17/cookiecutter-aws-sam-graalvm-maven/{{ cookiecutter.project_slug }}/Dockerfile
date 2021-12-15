@@ -1,4 +1,4 @@
-FROM amazon/aws-sam-cli-build-image-java11
+FROM amazonlinux:2
 
 RUN yum -y update \
     && yum install -y unzip tar gzip bzip2-devel ed gcc gcc-c++ gcc-gfortran \
@@ -7,7 +7,7 @@ RUN yum -y update \
     && rm -rf /var/cache/yum
 
 # Graal VM
-ENV JAVA_VERSION java17
+ENV JAVA_VERSION {{ cookiecutter.java_version }}
 ENV GRAAL_VERSION 21.3.0
 ENV GRAAL_FOLDERNAME graalvm-ce-${JAVA_VERSION}-${GRAAL_VERSION}
 ENV GRAAL_FILENAME graalvm-ce-${JAVA_VERSION}-linux-amd64-${GRAAL_VERSION}.tar.gz
@@ -32,6 +32,12 @@ RUN unzip -o $GRALE_FILENAME
 RUN mv $GRADLE_FOLDERNAME /usr/lib/gradle
 RUN rm $GRALE_FILENAME
 ENV PATH=$PATH:/usr/lib/gradle/bin
+
+# AWS Lambda Builders
+RUN amazon-linux-extras enable python3.8
+RUN yum clean metadata && yum -y install python3.8
+RUN curl -L get-pip.io | python3.8
+RUN pip3 install aws-lambda-builders
 
 VOLUME /project
 WORKDIR /project
