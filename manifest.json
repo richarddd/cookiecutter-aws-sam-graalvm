@@ -13,6 +13,20 @@
       "dependencyManager": "maven",
       "appTemplate": "graalvm-hello-world",
       "javaVersion": "11"
+    },
+    {
+      "directory": "templates/java17/cookiecutter-aws-sam-graalvm-gradle",
+      "displayName": "Hello World Example with GraalVM: Gradle",
+      "dependencyManager": "gradle",
+      "appTemplate": "graalvm-hello-world",
+      "javaVersion": "17"
+    },
+    {
+      "directory": "templates/java17/cookiecutter-aws-sam-graalvm-maven",
+      "displayName": "Hello World Example with GraalVM: Maven",
+      "dependencyManager": "maven",
+      "appTemplate": "graalvm-hello-world",
+      "javaVersion": "17"
     }
   ]
 }
