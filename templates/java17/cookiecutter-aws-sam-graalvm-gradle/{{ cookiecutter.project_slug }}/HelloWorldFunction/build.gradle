@@ -11,6 +11,9 @@ application {
     mainClass.set('com.amazonaws.services.lambda.runtime.api.client.AWSLambda')
 }
 
+sourceCompatibility = '17'
+targetCompatibility = '17'
+
 def junitVersion = providers.gradleProperty('junit.jupiter.version')
     .forUseAtConfigurationTime()
     .get()
