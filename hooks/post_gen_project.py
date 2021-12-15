@@ -16,7 +16,7 @@ def main():
     project_slug = "{{ cookiecutter.project_slug }}"
 
     templates_repo = "{{ cookiecutter._templates_repo }}"
-    template_dir = os.path.join("templates", "{{ cookiecutter.runtime }}", "cookiecutter-aws-sam-graalvm-{{ cookiecutter.dependency_manager.lower() }}")
+    template_dir = os.path.join("templates", "{{ cookiecutter.java_version }}", "cookiecutter-aws-sam-graalvm-{{ cookiecutter.dependency_manager.lower() }}")
     
     cookiecutter(   templates_repo,
                     directory=template_dir,
