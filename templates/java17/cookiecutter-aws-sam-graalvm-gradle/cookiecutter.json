@@ -1,4 +1,5 @@
 {
   "project_name": "My Project",
+  "java_version" : "",
   "project_slug": "{{ cookiecutter.project_name.replace('_', ' ').title().replace(' ', '') }}"
 }
