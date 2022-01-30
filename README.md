@@ -1,4 +1,4 @@
-# Cookiecutter SAM for Lambda functions with AWS Lambda Powertools Java
+# Cookiecutter SAM for Lambda functions using GraalVM
 
 This is a [Cookiecutter](https://github.com/cookiecutter/cookiecutter) template to create a Serverless App based on Serverless Application Model (SAM) and Java with [Graal VM](https://www.graalvm.org).
 
