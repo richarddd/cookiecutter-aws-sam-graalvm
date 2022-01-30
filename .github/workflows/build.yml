@@ -43,7 +43,7 @@ jobs:
       - name: Setup graalvm
         uses: DeLaGuardo/setup-graalvm@5.0
         with:
-          graalvm: "21.3.0"
+          graalvm: "22.0.0.2"
           java: java${{ matrix.javaVersion }}
           arch: "amd64"
       - name: Build with Maven
