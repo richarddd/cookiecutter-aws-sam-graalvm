@@ -12,7 +12,7 @@
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.jupiter.version>5.8.2</junit.jupiter.version>
-        <native.maven.plugin.version>0.9.9</native.maven.plugin.version>
+        <native.maven.plugin.version>0.9.10</native.maven.plugin.version>
         <junit.platform.native.version>0.9.6</junit.platform.native.version>
         <imageName>native</imageName>
         <mainClass>com.amazonaws.services.lambda.runtime.api.client.AWSLambda</mainClass>
