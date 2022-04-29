@@ -1,7 +1,7 @@
 {
-  "project_name": "My Project",
-  "project_slug": "{{ cookiecutter.project_name.replace('_', ' ').title().replace(' ', '') }}",
-  "dependency_manager": ["Maven", "Gradle"],
-  "java_version": ["java11", "java17"],
-  "_templates_repo": "https://github.com/richarddd/cookiecutter-aws-sam-graalvm.git"
+    "project_name": "My Project",
+    "project_slug": "{{ cookiecutter.project_name.replace('_', ' ').title().replace(' ', '') }}",
+    "dependency_manager": ["Maven", "Gradle"],
+    "java_version": ["java11", "java17"],
+    "_templates_repo": "https://github.com/richarddd/cookiecutter-aws-sam-graalvm.git"
 }
